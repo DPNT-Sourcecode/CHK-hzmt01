@@ -1,6 +1,6 @@
 import pytest
 
-from lib.solutions.CHK.checkout_solution import checkout, grouping
+from lib.solutions.CHK.checkout_solution import checkout, get_group_count
 
 
 @pytest.mark.parametrize(
@@ -23,7 +23,7 @@ from lib.solutions.CHK.checkout_solution import checkout, grouping
         (
             {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
             2,
-            0
+            7
         ),
     ]
 )
@@ -69,3 +69,4 @@ def test_grouping(count_dict, group_size, total_groups):
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
 """
+

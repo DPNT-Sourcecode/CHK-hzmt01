@@ -114,7 +114,7 @@ def compute_price(count: int, offers: list):
 
     return ret
 
-def grouping(count_dict: dict, group: list, group_size: int):
+def get_group_count(count_dict: dict, group: list, group_size: int):
     """
     reduces counts in count_dict and returns saving
     ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
@@ -167,7 +167,14 @@ def checkout(skus):
     count_dict["Q"] -= count_dict["R"] // 3
     count_dict["R"] = max(count_dict["R"], 0)
 
-    ret = sum(
+    #get group offer
+    ret = 45 * get_group_count(
+        count_dict,
+        ("S","T","X","Y","Z"),
+        3
+    )
+
+    ret += sum(
         [
             compute_price(count_dict[key], OFFERS[key])
             for key in OFFERS
@@ -175,6 +182,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
