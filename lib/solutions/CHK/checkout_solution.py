@@ -1,5 +1,5 @@
 
-def offer(sku: str, char: str, offers: list):
+def offer(count: int, offers: list):
 
     """
     computes optimal price in case of repeated offers
@@ -8,11 +8,6 @@ def offer(sku: str, char: str, offers: list):
     the case given but might not always
     offers MUST have the price of 1 as a tuple (unchecked)
     """
-
-    count = 0
-    for product in sku:
-        if product == char:
-            count += 1
 
     ret = 0
     offers = sorted(offers, key = lambda x : x[0], reverse = True)
@@ -26,6 +21,7 @@ def offer(sku: str, char: str, offers: list):
         count = remainder
 
     return ret
+    
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -37,7 +33,8 @@ def checkout(skus):
         "A" : 0,
         "B" : 0,
         "C" : 0,
-        "D" : 0
+        "D" : 0,
+        "E" : 0
     }
 
     for char in skus:
@@ -45,16 +42,18 @@ def checkout(skus):
             return -1
         count[char] += 1
 
-    #value counts
-    ret = 15 * count["D"] + 20 * count["C"]
+    
 
-    modulo, remainder = divmod(count["A"], 3)
-    ret += 130 * modulo + 50 * remainder
-
-    modulo, remainder = divmod(count["B"], 2)
-    ret += 45 * modulo + 30 * remainder
+    ret = offer(
+        skus, "A", 
+        [
+            (1, 50),
+            (3, 130),
+            (5, 200)
+        ])
 
     return ret
+
 
 
 
