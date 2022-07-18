@@ -150,7 +150,18 @@ def get_group_price(count_dict: dict, group: list, group_size: int):
     
     cheap_string = "".join([c[0] * c[1] for c in counts])
 
-    print(cheap_string)
+    chunks = [cheap_string[i:i+group_size] for i in range(0, len(cheap_string), group_size)]
+
+    group_num = 0
+    
+    #this could use a large optimisation...
+    for chunk in chunks:
+        if len(chunk) == group_size:
+            for char in chunk:
+                count_dict[char] -= 1
+            group_num += 1
+
+    return group_num
 
 
 
@@ -202,6 +213,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
