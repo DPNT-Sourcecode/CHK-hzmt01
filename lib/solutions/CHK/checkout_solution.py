@@ -114,39 +114,46 @@ def compute_price(count: int, offers: list):
 
     return ret
 
-def get_group_count(count_dict: dict, group: list, group_size: int):
-    """
-    reduces counts in count_dict and returns saving
-    ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
-    also ASSUMES it is rational to take the offer
 
-    modify count dict in place
-    
-    sorts by item count then price, guaranteeing to leave
-    the cheapest remainder
+# def get_group_count(count_dict: dict, group: list, group_size: int):
+#     """
+#     implement under new assumption
+#     """
+#     new_count_dict = count_dict.copy()
 
-    Cannot be combined with other singular offers
-    """
-    new_count_dict = count_dict.copy()
+#     counts = [
+#         [item, new_count_dict[item], price]
+#         for item, price in group
+#     ]
+#     counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
+
+#     #remove 1 from largest count systematically
+#     #not the most efficient method, but it's simpler to code...
+#     group_num = 0
+#     while counts[group_size - 1][1] > 0:
+#         for i in range(group_size):
+#             counts[i][1] -= 1
+#             count_dict[counts[i][0]] -= 1
+
+#         counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
+#         group_num += 1
+
+#     return group_num
+
+def get_group_price(count_dict: dict, group: list, group_size: int):
 
     counts = [
-        [item, new_count_dict[item], price]
+        [item, count_dict[item], price]
         for item, price in group
     ]
-    counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
+    counts = sorted(counts, key = lambda x : x[2])
+    
+    cheap_string = "".join([counts[0] * counts[1] for c in counts])
 
-    #remove 1 from largest count systematically
-    #not the most efficient method, but it's simpler to code...
-    group_num = 0
-    while counts[group_size - 1][1] > 0:
-        for i in range(group_size):
-            counts[i][1] -= 1
-            count_dict[counts[i][0]] -= 1
+    print(cheap_string)
 
-        counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
-        group_num += 1
 
-    return group_num
+
     
 
 
@@ -195,6 +202,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
