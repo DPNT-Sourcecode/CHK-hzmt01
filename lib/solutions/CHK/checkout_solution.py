@@ -114,6 +114,29 @@ def compute_price(count: int, offers: list):
 
     return ret
 
+def grouping(count_dict: dict, group: list, group_size: int, group_price: int):
+    """
+    reduces counts in count_dict and returns saving
+    ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
+    also ASSUMES it is rational to take the offer
+    modifies count dict in place
+    """
+    new_count_dict = count_dict.copy()
+
+    counts = [
+        (g, count_dict[g])
+        for g in group
+    ]
+    counts = sorted(counts, key = lambda x : x[1], reverse=True)
+
+    group_number = 0
+    for g in group:
+        #RHS determines how many groupings it is possible to make
+        new_count_dict[g] -= counts[group_size - 1][1]
+
+
+
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
