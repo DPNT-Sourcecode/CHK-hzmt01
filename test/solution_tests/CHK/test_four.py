@@ -31,7 +31,16 @@ def test_config_units():
     ("FFF", 20),
     ("AAAFF", 150),
     ("AAAFFF", 150),
+    ("H", 10),
+    ("HHHHH", 45),
+    ("HHHHHHHHHH", 80),
+    ("K", 80),
+    ("KK", 150),
+    ("NNNMM", 135),
+    ("P", 50),
+    ("PPPPP", 200)
 
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+
