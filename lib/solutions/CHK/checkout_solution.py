@@ -142,7 +142,7 @@ def get_group_count(count_dict: dict, group: list, group_size: int):
         for i in range(group_size):
             counts[i][1] -= 1
             count_dict[counts[i][0]] -= 1
-            
+
         counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
         group_num += 1
 
@@ -178,16 +178,14 @@ def checkout(skus):
 
     #get group offer
     group =(("S", 20),("T",20),("X",17),("Y",20),("Z",21))
+
+    #modifies count dict in place
     group_count = get_group_count(
         count_dict,
         group,
         3
     )
     ret = 45 * group_count
-
-    #subtract group count
-    for g in group:
-        count_dict[g[0]] -= group_count
 
     ret += sum(
         [
@@ -197,6 +195,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
