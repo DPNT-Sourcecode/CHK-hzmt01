@@ -42,10 +42,12 @@ def test_config_units():
     ("RRRQQ", 180),
     ("RRR", 150),
     ("U", 40),
-    ("UUU", 80)
+    ("UUU", 120),
+    ("UUUU", 120)
 
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+
 
 
