@@ -168,11 +168,17 @@ def checkout(skus):
     count_dict["R"] = max(count_dict["R"], 0)
 
     #get group offer
-    ret = 45 * get_group_count(
+    group = ("S","T","X","Y","Z")
+    group_count = get_group_count(
         count_dict,
-        ("S","T","X","Y","Z"),
+        group,
         3
     )
+    ret = 45 * group_count
+
+    #subtract group count
+    for g in group:
+        count_dict[g] -= group_count
 
     ret += sum(
         [
@@ -182,6 +188,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
