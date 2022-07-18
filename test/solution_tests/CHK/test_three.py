@@ -39,4 +39,3 @@ def test_offer(test_input, result):
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
-
