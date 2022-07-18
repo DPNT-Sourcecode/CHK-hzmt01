@@ -132,8 +132,11 @@ def checkout(skus):
 
     #combine custom offers
     count_dict["B"] -= count_dict["E"] // 2
+    count_dict["B"] = max(count_dict["B"], 0)
     count_dict["M"] -= count_dict["N"] // 3
+    count_dict["M"] = max(count_dict["M"], 0)
     count_dict["Q"] -= count_dict["R"] // 3
+    count_dict["R"] = max(count_dict["R"], 0)
 
     ret = sum(
         [
@@ -143,6 +146,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
