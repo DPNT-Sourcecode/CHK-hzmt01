@@ -48,6 +48,3 @@ def test_config_units():
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
-
-
-
