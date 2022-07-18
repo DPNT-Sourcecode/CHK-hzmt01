@@ -1,6 +1,6 @@
 import pytest
 
-from lib.solutions.CHK.checkout_solution import checkout
+from lib.solutions.CHK.checkout_solution import checkout, offer
 
 
 @pytest.mark.parametrize("test_input,result",[
@@ -8,15 +8,15 @@ from lib.solutions.CHK.checkout_solution import checkout
     ("AA", 100),
     ("AAA", 130),
     ("AAAA", 180),
-    ("B", 30),
-    ("BB", 45),
-    ("BBB", 75),
-    ("C", 20),
-    ("CC", 40),
-    ("D", 15),
-    ("DD", 30),
-    ("a", -1),
-    ("ABCD",115)
+    ("AAAAA", 200),
+    ("AAAAAA", 250),
 ])
-def test_checkout(test_input, result):
-    assert checkout(test_input) == result
+def test_offer(test_input, result):
+    assert offer(
+        test_input,
+        "A",50,
+        [
+            (3, 130),
+            (5, 200)
+        ]) == result
+
