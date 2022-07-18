@@ -3,6 +3,9 @@ def offer(sku: str, char: str, price: int, offers=None):
 
     """
     computes optimal price in case of repeated offers
+    NOTE: assumes for now that the optimal strategy is
+    to repeatedly take the biggest offer. This holds true for
+    the case given but might not always
     """
 
     count = 0
@@ -16,10 +19,14 @@ def offer(sku: str, char: str, price: int, offers=None):
     ret = 0
     offers = sorted(offers, key = lambda x : x[0], reverse = True)
 
+    #eliminate irrelevant offers
+    offers = [o for o in offers where o[0] > count]
+
     for unit, offer_price in offers:
         modulo, remainder = divmod(count, unit)
         ret += modulo * offer_price
         count = remainder
+        print(count)
 
     ret += remainder * offer_price
     return ret
@@ -52,6 +59,7 @@ def checkout(skus):
     ret += 45 * modulo + 30 * remainder
 
     return ret
+
 
 
 
