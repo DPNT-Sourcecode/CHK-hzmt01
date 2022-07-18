@@ -1,5 +1,28 @@
 
+def offer(sku: str, char: str, price: int, offers=None):
 
+    """
+    computes optimal price in case of repeated offers
+    """
+
+    count = 0
+    for product in sku:
+        if product == char:
+            count += 1
+
+    if not offers:
+        return count * price
+
+    ret = 0
+    offers = sorted(offers, key = lambda x : x[0], reverse = True)
+
+    for unit, offer_price in offers:
+        modulo, remainder = divmod(count, unit)
+        ret += modulo * offer_price
+        count = remainder
+
+    ret += remainder * offer_price
+    return ret
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -29,6 +52,7 @@ def checkout(skus):
     ret += 45 * modulo + 30 * remainder
 
     return ret
+
 
 
 
