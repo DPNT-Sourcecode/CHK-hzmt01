@@ -14,9 +14,11 @@ from lib.solutions.CHK.checkout_solution import checkout, offer
 def test_offer(test_input, result):
     assert offer(
         test_input,
-        "A",50,
+        "A",
         [
+            (1, 50),
             (3, 130),
             (5, 200)
         ]) == result
+
 
