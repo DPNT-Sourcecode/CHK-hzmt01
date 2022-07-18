@@ -1,20 +1,18 @@
 
-def offer(sku: str, char: str, price: int, offers=None):
+def offer(sku: str, char: str, offers: list):
 
     """
     computes optimal price in case of repeated offers
     NOTE: assumes for now that the optimal strategy is
     to repeatedly take the biggest offer. This holds true for
     the case given but might not always
+    offers MUST have the price of 1 as a tuple
     """
 
     count = 0
     for product in sku:
         if product == char:
             count += 1
-
-    if not offers:
-        return count * price
 
     ret = 0
     offers = sorted(offers, key = lambda x : x[0], reverse = True)
@@ -59,6 +57,7 @@ def checkout(skus):
     ret += 45 * modulo + 30 * remainder
 
     return ret
+
 
 
 
