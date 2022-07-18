@@ -21,7 +21,7 @@ def offer(count: int, offers: list):
         count = remainder
 
     return ret
-    
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -29,7 +29,7 @@ def checkout(skus):
     if not isinstance(skus, str):
         return -1
     
-    count = {
+    count_dict = {
         "A" : 0,
         "B" : 0,
         "C" : 0,
@@ -38,27 +38,37 @@ def checkout(skus):
     }
 
     for char in skus:
-        if char not in count.keys():
+        if char not in count_dict.keys():
             return -1
-        count[char] += 1
+        count_dict[char] += 1
 
-    
+    #always can combine offer this way as it is cheaper
+    count_dict["B"] = count_dict["E"] // 2
 
-    ret = offer(
-        skus, "A", 
-        [
+    ret = (
+        offer(count_dict["A"], [
             (1, 50),
             (3, 130),
             (5, 200)
+        ]) +
+        offer(count_dict["B"], [
+            (1, 30),
+            (2, 45),
+        ]) +
+        offer(count_dict["C"], [
+            (1, 20)
+        ]) +
+        offer(count_dict["D"], [
+            (1, 15),
+            (3, 130),
+            (5, 200)
+        ]) + 
+        offer(count_dict["E"], [
+            (1, 40)
         ])
+    )
 
     return ret
-
-
-
-
-
-
 
 
 

@@ -21,5 +21,10 @@ def test_offer(test_input, result):
         ]) == result
 
 
+@pytest.mark.parametrize("test_input,result",[
+    ("AAA", 130),
+    ("BB", 45),
 
-
+])
+def test_checkout(test_input, result):
+    assert checkout(test_input) == result
