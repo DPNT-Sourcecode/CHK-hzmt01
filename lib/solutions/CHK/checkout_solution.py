@@ -123,28 +123,21 @@ def grouping(count_dict: dict, group: list, group_size: int):
     new_count_dict = count_dict.copy()
 
     counts = [
-        (g, new_count_dict[g])
+        [g, new_count_dict[g]]
         for g in group
     ]
     counts = sorted(counts, key = lambda x : x[1], reverse=True)
-    counts = [count for count in counts if count[1] > 0]
-    print(counts)
 
-    #loop to remove groups 1 by 1
+    #remove 1 from largest count systematically
+    #not the most efficient method, but it's simpler to code...
     group_num = 0
-    while len(counts) > group_size:
-        new_counts = [(c[0], c[1] - counts[0][1]) for c in counts]
-        print(new_counts)
-        group_num += counts[0][1]
-        new_counts = [count for count in new_counts if count[1] > 0]
-        counts = new_counts
+    while counts[group_size - 1][1] > 0:
+        for i in range(group_size):
+            counts[i][1] -= 1
+        counts = sorted(counts, key = lambda x : x[1], reverse=True)
+        group_num += 1
 
-
-    for g in group:
-        #RHS determines how many groupings it is possible to make
-        new_count_dict[g] -= group_num
-
-    return new_count_dict, group_num
+    return group_num
     
 
 
@@ -182,6 +175,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
