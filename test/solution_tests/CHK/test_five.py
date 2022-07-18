@@ -63,7 +63,3 @@ def test_grouping(count_dict, group_size, group_price, new_dict, total_groups):
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
 """
-
-
-
-
