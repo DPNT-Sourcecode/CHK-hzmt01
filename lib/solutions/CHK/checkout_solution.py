@@ -146,9 +146,9 @@ def get_group_price(count_dict: dict, group: list, group_size: int):
         [item, count_dict[item], price]
         for item, price in group
     ]
-    counts = sorted(counts, key = lambda x : x[2])
+    counts = sorted(counts, key = lambda x : x[2], reverse=True)
     
-    cheap_string = "".join([counts[0] * counts[1] for c in counts])
+    cheap_string = "".join([c[0] * c[1] for c in counts])
 
     print(cheap_string)
 
@@ -202,6 +202,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
