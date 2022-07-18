@@ -66,9 +66,8 @@ def test_grouping(count_dict, group_size, total_groups):
     ("UUUU", 120),
     ("STXYZ", 82),
     ("STXYZSTX", 124),
-    ("SSS", 45)
+    ("SSS", 45),
+    ("SSSZ", 65)
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
-
-
