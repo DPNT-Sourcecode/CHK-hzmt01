@@ -140,7 +140,7 @@ def compute_price(count: int, offers: list):
 
 #     return group_num
 
-def get_group_price(count_dict: dict, group: list, group_size: int):
+def get_group_count(count_dict: dict, group: list, group_size: int):
 
     counts = [
         [item, count_dict[item], price]
@@ -213,6 +213,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
