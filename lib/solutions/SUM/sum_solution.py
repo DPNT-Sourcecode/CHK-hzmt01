@@ -7,4 +7,3 @@ def compute(x: int, y: int):
         raise ValueError(f"argument not in range 0-100")
 
     return x + y
-
