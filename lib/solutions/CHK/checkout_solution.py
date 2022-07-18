@@ -132,6 +132,7 @@ def grouping(count_dict: dict, group: list, group_size: int, group_price: int):
     for g in group:
         #RHS determines how many groupings it is possible to make
         new_count_dict[g] -= counts[group_size - 1][1]
+        new_count_dict[g] = max(new_count_dict[g], 0)
 
     return new_count_dict, counts[group_size - 1][1] * group_price
     
@@ -171,6 +172,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 

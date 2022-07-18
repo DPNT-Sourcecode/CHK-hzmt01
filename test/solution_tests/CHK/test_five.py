@@ -4,8 +4,11 @@ from lib.solutions.CHK.checkout_solution import checkout, grouping
 
 
 @pytest.mark.parametrize(
-    "config_dict", [
-        {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5,"Z" : 5}
+    "config_dict, result, group_size, group_price", [
+        (
+            {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
+            {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
+        )
     ]
 )
 def test_grouping(
@@ -46,4 +49,5 @@ def test_grouping(
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+
 
