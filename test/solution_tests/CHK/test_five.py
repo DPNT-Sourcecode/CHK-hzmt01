@@ -4,20 +4,27 @@ from lib.solutions.CHK.checkout_solution import checkout, grouping
 
 
 @pytest.mark.parametrize(
-    "config_dict, result, group_size, group_price", [
+    "count_dict, group_size, group_price, new_dict, total_groups", [
         (
             {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
-            {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
+            3,
+            45,
+            {"S" : 0, "T" : 0, "X" : 0 ,"Y" : 2, "Z" : 2},
+            3,
         )
     ]
 )
-def test_grouping(
+def test_grouping(count_dict, group_size, group_price, new_dict, total_groups):
+    assert grouping(
+        count_dict,
+        ("S","T","X","Y","Z"),
+        group_size,
+        group_price,
+    ) == (new_dict, total_groups)
 
-)
 
 
-
-
+"""
 @pytest.mark.parametrize("test_input,result",[
     ("AAA", 130),
     ("B", 30),
@@ -49,5 +56,6 @@ def test_grouping(
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+"""
 
 
