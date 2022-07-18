@@ -1,26 +1,22 @@
 import pytest
 
-from lib.solutions.CHK.checkout_solution import checkout, offer
+from lib.solutions.CHK.checkout_solution import checkout, OFFERS
 
 
-@pytest.mark.parametrize("test_input,result",[
-    (1, 50),
-    (2,100),
-    (3,130),
-    (4,180),
-    (5,200),
-    (6,250),
-])
-def test_offer(test_input, result):
-    assert offer(
-        test_input,
-        [
-            (1, 50),
-            (3, 130),
-            (5, 200)
-        ]) == result
+def test_config_length():
+
+    assert len(OFFERS) == 26
+
+def test_config_units():
+
+    for offer in OFFERS.values():
+        units = set([index[0] for index in offer])
+
+        assert 1 in units
 
 
+
+"""
 @pytest.mark.parametrize("test_input,result",[
     ("AAA", 130),
     ("B", 30),
@@ -39,3 +35,4 @@ def test_offer(test_input, result):
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+"""
