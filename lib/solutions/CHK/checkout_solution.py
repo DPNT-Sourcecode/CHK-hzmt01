@@ -43,7 +43,7 @@ def checkout(skus):
         count_dict[char] += 1
 
     #always can combine offer this way as it is cheaper
-    count_dict["B"] = count_dict["E"] // 2
+    count_dict["B"] -= count_dict["E"] // 2
 
     ret = (
         offer(count_dict["A"], [
@@ -69,6 +69,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
