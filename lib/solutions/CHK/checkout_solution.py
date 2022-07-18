@@ -119,7 +119,6 @@ def grouping(count_dict: dict, group: list, group_size: int):
     reduces counts in count_dict and returns saving
     ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
     also ASSUMES it is rational to take the offer
-    modifies count dict in place
     """
     new_count_dict = count_dict.copy()
 
@@ -128,13 +127,23 @@ def grouping(count_dict: dict, group: list, group_size: int):
         for g in group
     ]
     counts = sorted(counts, key = lambda x : x[1], reverse=True)
+    counts = [count for count in counts if count[1] > 0]
+
+    #loop to remove groups 1 by 1
+    group_num = 0
+    while len(counts) > group_size:
+        new_counts = [(c[0], c[1] - counts[0][1]) for c in counts]
+        group_num += counts[0][1]
+        new_counts = [count for count in new_counts if count[1] > 0]
+        counts = new_counts
+        print(counts)
+
 
     for g in group:
         #RHS determines how many groupings it is possible to make
-        new_count_dict[g] -= counts[group_size - 1][1]
-        new_count_dict[g] = max(new_count_dict[g], 0)
+        new_count_dict[g] -= group_num
 
-    return new_count_dict, counts[group_size - 1][1]
+    return new_count_dict, group_num
     
 
 
@@ -172,6 +181,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
