@@ -28,7 +28,7 @@ from lib.solutions.CHK.checkout_solution import checkout, get_group_count
     ]
 )
 def test_grouping(count_dict, group_size, total_groups):
-    assert grouping(
+    assert get_group_count(
         count_dict,
         ("S","T","X","Y","Z"),
         group_size
@@ -36,7 +36,7 @@ def test_grouping(count_dict, group_size, total_groups):
 
 
 
-"""
+
 @pytest.mark.parametrize("test_input,result",[
     ("AAA", 130),
     ("B", 30),
@@ -54,8 +54,8 @@ def test_grouping(count_dict, group_size, total_groups):
     ("H", 10),
     ("HHHHH", 45),
     ("HHHHHHHHHH", 80),
-    ("K", 80),
-    ("KK", 150),
+    ("K", 70),
+    ("KK", 120),
     ("NNNMM", 135),
     ("P", 50),
     ("PPPPP", 200),
@@ -68,5 +68,3 @@ def test_grouping(count_dict, group_size, total_groups):
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
-"""
-
