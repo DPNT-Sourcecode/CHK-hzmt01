@@ -64,7 +64,7 @@ OFFERS = {
         (1, 50),
     ],
     "S" : [
-        (1, 30),
+        (1, 20),
     ],
     "T" : [
         (1, 20),
@@ -82,13 +82,13 @@ OFFERS = {
         (1, 20),
     ],
     "X" : [
-        (1, 90),
+        (1, 17),
     ],
     "Y" : [
-        (1, 10),
+        (1, 20),
     ],
     "Z" : [
-        (1, 50),
+        (1, 21),
     ]
 }
 def compute_price(count: int, offers: list):
@@ -123,8 +123,8 @@ def get_group_count(count_dict: dict, group: list, group_size: int):
     new_count_dict = count_dict.copy()
 
     counts = [
-        [g, new_count_dict[g]]
-        for g in group
+        [item, new_count_dict[g], price]
+        for item, price in group
     ]
     counts = sorted(counts, key = lambda x : x[1], reverse=True)
 
@@ -188,6 +188,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
