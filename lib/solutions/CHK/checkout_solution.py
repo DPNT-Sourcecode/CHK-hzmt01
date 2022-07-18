@@ -124,15 +124,17 @@ def grouping(count_dict: dict, group: list, group_size: int, group_price: int):
     new_count_dict = count_dict.copy()
 
     counts = [
-        (g, count_dict[g])
+        (g, new_count_dict[g])
         for g in group
     ]
     counts = sorted(counts, key = lambda x : x[1], reverse=True)
 
-    group_number = 0
     for g in group:
         #RHS determines how many groupings it is possible to make
         new_count_dict[g] -= counts[group_size - 1][1]
+
+    return new_count_dict, counts[group_size - 1][1] * group_price
+    
 
 
 
@@ -169,6 +171,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 

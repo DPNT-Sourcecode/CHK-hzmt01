@@ -1,18 +1,16 @@
 import pytest
 
-from lib.solutions.CHK.checkout_solution import checkout, OFFERS
+from lib.solutions.CHK.checkout_solution import checkout, grouping
 
 
-def test_config_length():
+@pytest.mark.parametrize(
+    "config_dict", [
+        {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5,"Z" : 5}
+    ]
+)
+def test_grouping(
 
-    assert len(OFFERS) == 26
-
-def test_config_units():
-
-    for offer in OFFERS.values():
-        units = set([index[0] for index in offer])
-
-        assert 1 in units
+)
 
 
 
@@ -48,3 +46,4 @@ def test_config_units():
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+
