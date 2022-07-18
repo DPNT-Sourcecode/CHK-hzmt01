@@ -30,7 +30,7 @@ from lib.solutions.CHK.checkout_solution import checkout, get_group_count
 def test_grouping(count_dict, group_size, total_groups):
     assert get_group_count(
         count_dict,
-        ("S","T","X","Y","Z"),
+        (("S", 20),("T",20),("X",17),("Y",20),("Z",21)),
         group_size
     ) == total_groups
 
@@ -63,8 +63,10 @@ def test_grouping(count_dict, group_size, total_groups):
     ("RRR", 150),
     ("U", 40),
     ("UUU", 120),
-    ("UUUU", 120)
+    ("UUUU", 120),
+    ("STXYZ", 82)
 
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+

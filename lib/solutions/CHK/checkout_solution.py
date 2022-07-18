@@ -119,6 +119,11 @@ def get_group_count(count_dict: dict, group: list, group_size: int):
     reduces counts in count_dict and returns saving
     ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
     also ASSUMES it is rational to take the offer
+    
+    sorts by item count then price, guaranteeing to leave
+    the cheapest remainder
+
+    Cannot be combined with other singular offers
     """
     new_count_dict = count_dict.copy()
 
@@ -126,7 +131,7 @@ def get_group_count(count_dict: dict, group: list, group_size: int):
         [item, new_count_dict[g], price]
         for item, price in group
     ]
-    counts = sorted(counts, key = lambda x : x[1], reverse=True)
+    counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
 
     #remove 1 from largest count systematically
     #not the most efficient method, but it's simpler to code...
@@ -134,7 +139,7 @@ def get_group_count(count_dict: dict, group: list, group_size: int):
     while counts[group_size - 1][1] > 0:
         for i in range(group_size):
             counts[i][1] -= 1
-        counts = sorted(counts, key = lambda x : x[1], reverse=True)
+        counts = sorted(counts, key = lambda x : (x[1], x[2]), reverse=True)
         group_num += 1
 
     return group_num
@@ -168,7 +173,7 @@ def checkout(skus):
     count_dict["R"] = max(count_dict["R"], 0)
 
     #get group offer
-    group = ("S","T","X","Y","Z")
+    group =(("S", 20),("T",20),("X",17),("Y",20),("Z",21))
     group_count = get_group_count(
         count_dict,
         group,
@@ -178,7 +183,7 @@ def checkout(skus):
 
     #subtract group count
     for g in group:
-        count_dict[g] -= group_count
+        count_dict[g[0]] -= group_count
 
     ret += sum(
         [
@@ -188,6 +193,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
