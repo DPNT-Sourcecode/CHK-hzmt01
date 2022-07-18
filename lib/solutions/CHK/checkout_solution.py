@@ -20,7 +20,7 @@ def offer(sku: str, char: str, price: int, offers=None):
     offers = sorted(offers, key = lambda x : x[0], reverse = True)
 
     #eliminate irrelevant offers
-    offers = [o for o in offers where o[0] > count]
+    offers = [o for o in offers if o[0] > count]
 
     for unit, offer_price in offers:
         modulo, remainder = divmod(count, unit)
@@ -59,6 +59,7 @@ def checkout(skus):
     ret += 45 * modulo + 30 * remainder
 
     return ret
+
 
 
 
