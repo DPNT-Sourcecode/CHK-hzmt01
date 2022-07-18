@@ -16,7 +16,7 @@ def test_config_units():
 
 
 
-"""
+
 @pytest.mark.parametrize("test_input,result",[
     ("AAA", 130),
     ("B", 30),
@@ -35,4 +35,3 @@ def test_config_units():
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
-"""

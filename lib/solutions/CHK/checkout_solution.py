@@ -130,12 +130,15 @@ def checkout(skus):
             return -1
         count_dict[char] += 1
 
-    #always can combine offer this way as it is cheaper
+    #combine custom offers
     count_dict["B"] -= count_dict["E"] // 2
+    count_dict["M"] -= count_dict["N"] // 3
+    count_dict["Q"] -= count_dict["R"] // 3
 
     ret = sum(
         [
-            offer
+            compute_price(count_dict[key], OFFERS[key])
+            for key in OFFERS
         ]
     )
 
