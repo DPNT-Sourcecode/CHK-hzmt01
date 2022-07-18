@@ -30,7 +30,13 @@ def test_offer(test_input, result):
     ("BBBEe", -1),
     ("C", 20),
     ("D", 15),
+    ("F", 10),
+    ("FF", 20),
+    ("FFF", 20),
+    ("AAAFF", 150),
+    ("AAAFFF", 150),
 
 ])
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
+

@@ -34,7 +34,8 @@ def checkout(skus):
         "B" : 0,
         "C" : 0,
         "D" : 0,
-        "E" : 0
+        "E" : 0,
+        "F" : 0,
     }
 
     for char in skus:
@@ -65,10 +66,15 @@ def checkout(skus):
         ]) + 
         offer(count_dict["E"], [
             (1, 40)
+        ]) +
+        offer(count_dict["F"], [
+            (1, 10),
+            (3, 20)
         ])
     )
 
     return ret
+
 
 
 
