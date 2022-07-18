@@ -128,15 +128,16 @@ def grouping(count_dict: dict, group: list, group_size: int):
     ]
     counts = sorted(counts, key = lambda x : x[1], reverse=True)
     counts = [count for count in counts if count[1] > 0]
+    print(counts)
 
     #loop to remove groups 1 by 1
     group_num = 0
     while len(counts) > group_size:
         new_counts = [(c[0], c[1] - counts[0][1]) for c in counts]
+        print(new_counts)
         group_num += counts[0][1]
         new_counts = [count for count in new_counts if count[1] > 0]
         counts = new_counts
-        print(counts)
 
 
     for g in group:
@@ -181,6 +182,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 
