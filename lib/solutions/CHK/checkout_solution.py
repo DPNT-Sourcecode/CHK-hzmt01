@@ -114,7 +114,7 @@ def compute_price(count: int, offers: list):
 
     return ret
 
-def grouping(count_dict: dict, group: list, group_size: int, group_price: int):
+def grouping(count_dict: dict, group: list, group_size: int):
     """
     reduces counts in count_dict and returns saving
     ASSUMES group must contain separate members, i.e. 3Z is not a valid offer
@@ -134,7 +134,7 @@ def grouping(count_dict: dict, group: list, group_size: int, group_price: int):
         new_count_dict[g] -= counts[group_size - 1][1]
         new_count_dict[g] = max(new_count_dict[g], 0)
 
-    return new_count_dict, counts[group_size - 1][1] * group_price
+    return new_count_dict, counts[group_size - 1][1]
     
 
 
@@ -172,6 +172,7 @@ def checkout(skus):
     )
 
     return ret
+
 
 
 

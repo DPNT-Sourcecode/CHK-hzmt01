@@ -11,6 +11,13 @@ from lib.solutions.CHK.checkout_solution import checkout, grouping
             45,
             {"S" : 0, "T" : 0, "X" : 0 ,"Y" : 2, "Z" : 2},
             3,
+        ),
+        (
+            {"S" : 0, "T" : 1, "X" : 3 ,"Y" : 5, "Z" : 5},
+            4,
+            45,
+            {"S" : 0, "T" : 0, "X" : 2 ,"Y" : 4, "Z" : 4},
+            1,
         )
     ]
 )
@@ -18,8 +25,7 @@ def test_grouping(count_dict, group_size, group_price, new_dict, total_groups):
     assert grouping(
         count_dict,
         ("S","T","X","Y","Z"),
-        group_size,
-        group_price,
+        group_size
     ) == (new_dict, total_groups)
 
 
@@ -57,5 +63,6 @@ def test_grouping(count_dict, group_size, group_price, new_dict, total_groups):
 def test_checkout(test_input, result):
     assert checkout(test_input) == result
 """
+
 
 
